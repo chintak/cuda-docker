@@ -6,13 +6,13 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   wget
 
-ENV CUDA_MAJOR 7.0
-ENV CUDA_VERSION 7.0.28
+ENV CUDA_MAJOR 6.5
+ENV CUDA_VERSION 6.5.14
 
 # Change to the /tmp directory
 RUN cd /tmp && \
 # Download run file
-  wget http://developer.download.nvidia.com/compute/cuda/$CUDA_MAJOR/Prod/local_installers/cuda_$CUDA_VERSION_linux.run && \
+  wget http://developer.download.nvidia.com/compute/cuda/$CUDA_MAJOR/Prod/local_installers/cuda_$CUDA_VERSION_linux_64.run && \
 # Make the run file executable and extract
   chmod +x cuda_*_linux.run && ./cuda_*_linux.run -extract=`pwd` && \
 # Install CUDA drivers (silent, no kernel)
