@@ -16,7 +16,7 @@ RUN cd /tmp && \
 # Download run file
   wget http://developer.download.nvidia.com/compute/cuda/$CUDA_MAJOR/rel/installers/cuda_${CUDA_VERSION}_linux_64.run && \
 # Make the run file executable and extract
-  chmod +x cuda_*_linux.run && ./cuda_*_linux.run -extract=`pwd` && \
+  chmod +x cuda_*_linux.run && ./cuda_*.run -extract=`pwd` && \
 # Install CUDA drivers (silent, no kernel)
   ./NVIDIA-Linux-x86_64-*.run -s --no-kernel-module && \
 # Install toolkit (silent)
