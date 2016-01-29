@@ -4,10 +4,12 @@ MAINTAINER Chintak Sheth <chintaksheth@gmail.com>
 
 RUN apt-get update && apt-get install -y \
   build-essential \
-  wget
+  wget \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
 
-ENV CUDA_MAJOR 7.5
-ENV CUDA_VERSION 7.5.18
+ENV CUDA_MAJOR 7.0
+ENV CUDA_VERSION 7.0.28
 
 # Change to the /tmp directory
 RUN cd /tmp && \
@@ -23,5 +25,14 @@ RUN cd /tmp && \
   rm -rf *
 
 # Add to path
-ENV PATH=/usr/local/cuda/bin:$PATH \
-  LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+ENV CUDA_HOME=/usr/local/cuda \
+  PATH=${CUDA_HOME}/bin:$PATH \
+  LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
+
+WORKDIR /tmp/
+ADD cudnn-7.0-linux-x64-v3.0-prod.tgz .
+RUN cp cuda/include/cudnn.h ${CUDA_HOME}/include/ && \
+  cp cuda/lib64/libcudnn.so.7.0.64 ${CUDA_HOME}/lib64/ && \
+  ln -s ${CUDA_HOME}/lib64/libcudnn.so.7.0.64 ${CUDA_HOME}/lib64/libcudnn.so.7.0 && \
+  ln -s ${CUDA_HOME}/lib64/libcudnn.so.7.0 ${CUDA_HOME}/lib64/libcudnn.so && \
+  rm -r cuda
