@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-ENV CUDA_MAJOR 7.0
-ENV CUDA_VERSION 7.0.28
+ENV CUDA_MAJOR 7.5
+ENV CUDA_VERSION 7.5.18
 
 # Change to the /tmp directory
 RUN cd /tmp && \
