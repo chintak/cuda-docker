@@ -12,7 +12,7 @@ ENV CUDA_VERSION 6.5.14
 # Change to the /tmp directory
 RUN cd /tmp && \
 # Download run file
-  wget http://developer.download.nvidia.com/compute/cuda/$CUDA_MAJOR/Prod/local_installers/cuda_$CUDA_VERSION_linux_64.run && \
+  wget http://developer.download.nvidia.com/compute/cuda/$CUDA_MAJOR/Prod/local_installers/cuda_${CUDA_VERSION}_linux_64.run && \
 # Make the run file executable and extract
   chmod +x cuda_*_linux.run && ./cuda_*_linux.run -extract=`pwd` && \
 # Install CUDA drivers (silent, no kernel)
