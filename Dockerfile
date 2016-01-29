@@ -32,7 +32,7 @@ ENV CUDA_HOME=/usr/local/cuda \
 WORKDIR /tmp/
 ADD cudnn-6.5-linux-x64-v2.tgz .
 RUN cp cud*/cudnn.h ${CUDA_HOME}/include/ && \
-  cp cud*/libcudnn.so.7.0.64 ${CUDA_HOME}/lib64/ && \
+  cp cud*/libcudnn.so.6.5.48 ${CUDA_HOME}/lib64/ && \
   ln -s ${CUDA_HOME}/lib64/libcudnn.so.6.5.48 ${CUDA_HOME}/lib64/libcudnn.so.6.5 && \
   ln -s ${CUDA_HOME}/lib64/libcudnn.so.6.5 ${CUDA_HOME}/lib64/libcudnn.so && \
   rm -r cud*
