@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   wget
 
-ENV CUDA_MAJOR 7.5
-ENV CUDA_VERSION 7.5.18
+ENV CUDA_MAJOR 7.0
+ENV CUDA_VERSION 7.0.28
 
 # Change to the /tmp directory
 RUN cd /tmp && \
