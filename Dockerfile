@@ -26,7 +26,8 @@ RUN cd /tmp && \
 
 # Add to path
 ENV CUDA_HOME=/usr/local/cuda
-RUN echo "export PATH=${CUDA_HOME}/bin:$PATH" >> /root/.bashrc \
+RUN echo "export CUDA_HOME=/usr/local/cuda" >> /root/.bashrc \
+&& echo "export PATH=${CUDA_HOME}/bin:$PATH" >> /root/.bashrc \
 && echo "LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH" >> /root/.bashrc
 
 WORKDIR /tmp/
