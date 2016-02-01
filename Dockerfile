@@ -25,13 +25,14 @@ RUN cd /tmp && \
   rm -rf *
 
 # Add to path
-ENV CUDA_HOME=/usr/local/cuda \
-  PATH=${CUDA_HOME}/bin:$PATH \
-  LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
+ENV CUDA_HOME=/usr/local/cuda
+RUN echo "export PATH=${CUDA_HOME}/bin:$PATH" >> /root/.bashrc \
+&& echo "LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH" >> /root/.bashrc
 
 WORKDIR /tmp/
 ADD cudnn-7.0-linux-x64-v3.0-prod.tgz .
 RUN cp cuda/include/cudnn.h ${CUDA_HOME}/include/ && \
+  cp cud*/libcudnn_static.a ${CUDA_HOME}/lib64/ && \
   cp cuda/lib64/libcudnn.so.7.0.64 ${CUDA_HOME}/lib64/ && \
   ln -s ${CUDA_HOME}/lib64/libcudnn.so.7.0.64 ${CUDA_HOME}/lib64/libcudnn.so.7.0 && \
   ln -s ${CUDA_HOME}/lib64/libcudnn.so.7.0 ${CUDA_HOME}/lib64/libcudnn.so && \
